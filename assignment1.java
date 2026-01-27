@@ -43,3 +43,23 @@ class inheritancedemo{
         obj.showchild();
     }
 }
+
+class methodoverloading{
+    void add(int a, int b){
+        int sum= a+b;
+        System.out.println("sum of integers =" + sum);
+    }
+
+    void add(double a, double b){
+        double sum = a+b;
+        System.out.println("sum of doubles = "+ sum);
+    }
+
+
+public static void main( String[] args){
+    methodoverloading obj = new methodoverloading();
+    obj.add(10,20);
+    obj.add(10.5,5.5);
+
+}
+}
