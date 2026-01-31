@@ -10,13 +10,7 @@ class dog extends animal{
     }
 }
 
-public class Main {
-    public static void main(String[] args){
-        dog d = new dog();
-        d.eat();
-        d.bark();
-    }
-}
+
 
 class student {
     String name;
@@ -26,5 +20,24 @@ class student {
     }
     void display(){
         System.out.println("name :"+ this.name);
+    }
+}
+
+class demo{
+    demo(){
+        this("default constructor");
+    }
+    demo( String message){
+        System.out.println(message);
+
+    }
+}
+
+public class Main {
+    public static void main(String[] args){
+        dog d = new dog();
+        d.eat();
+        d.bark();
+        new demo();
     }
 }
