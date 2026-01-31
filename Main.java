@@ -17,3 +17,14 @@ public class Main {
         d.bark();
     }
 }
+
+class student {
+    String name;
+
+    student(String name){
+        this.name=name;
+    }
+    void display(){
+        System.out.println("name :"+ this.name);
+    }
+}
