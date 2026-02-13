@@ -1,88 +1,96 @@
-class Student {
+class employee {
+    String employeeid;
     String name;
-    double[] grades = new double[20];
-    int gradeCount = 0;
+    String role;
+    Double salary;
+    Double finalsalary;
 
-    Student(String name) {
-        this.name = name;
+    void calculatesalary() {
+        switch (role) {
+            case "manager":
+                finalsalary = salary + (0.20 * salary);
+                break;
+
+            case "developer":
+                finalsalary = salary + (0.10 * salary);   // fixed bonus
+                break;
+
+            case "intern":
+                finalsalary = 1000.0;   // fixed salary as per question
+                break;
+
+            default:
+                finalsalary = salary;
+        }
     }
 
-    void addGrade(double grade) {
-        grades[gradeCount] = grade;
-        gradeCount++;
-        System.out.println("Grade added: " + grade + " for " + name);
+    void applydeduction(double amount) {
+        finalsalary = finalsalary - amount;
     }
 
-    double calculateAverage() {
-        if (gradeCount == 0) {
-            return 0;
-        }
-
-        double sum = 0;
-        for (int i = 0; i < gradeCount; i++) {
-            sum += grades[i];
-        }
-
-        return sum / gradeCount;
-    }
-
-    void displayStudentDetails() {
-        System.out.println("Student Name: " + name);
-        System.out.print("Grades: ");
-        for (int i = 0; i < gradeCount; i++) {
-            System.out.print(grades[i] + " ");
-        }
-        System.out.println();
-        System.out.println("Average: " + calculateAverage());
-        System.out.println("---------------------");
+    void displayemployeedetails() {
+        System.out.println("employee id: " + employeeid);
+        System.out.println("name: " + name);
+        System.out.println("role: " + role);
+        System.out.println("final salary: " + finalsalary);
+        System.out.println("------------------------");
     }
 }
 
-class GradeManager {
-    Student[] students = new Student[20];
-    int studentCount = 0;
+class payroll {
+    employee[] employees = new employee[20];
+    int count = 0;
 
-    void addStudent(Student student) {
-        students[studentCount] = student;
-        studentCount++;
-        System.out.println("Student added: " + student.name);
+    void addemployee(employee employee) {
+        employees[count] = employee;
+        count++;
     }
 
-    Student findStudentByName(String name) {
-        for (int i = 0; i < studentCount; i++) {
-            if (students[i].name.equals(name)) {
-                return students[i];
+    employee findemployeebyid(String employeeid) {
+        for (int i = 0; i < count; i++) {
+            if (employees[i].employeeid.equals(employeeid)) {
+                return employees[i];
             }
         }
         return null;
     }
 
-    void displayAllStudents() {
-        for (int i = 0; i < studentCount; i++) {
-            students[i].displayStudentDetails();
+    void calculateAllSalaries() {
+        for (int i = 0; i < count; i++) {
+            employees[i].calculatesalary();
+            employees[i].displayemployeedetails();
         }
     }
 }
 
 public class case5 {
+
     public static void main(String[] args) {
-        GradeManager manager = new GradeManager();
 
-        Student s1 = new Student("Alice");
-        Student s2 = new Student("Bob");
+        employee employee1 = new employee();
+        employee1.employeeid = "E001";
+        employee1.name = "Alice";
+        employee1.role = "manager";
+        employee1.salary = 5000.0;
 
-        manager.addStudent(s1);
-        manager.addStudent(s2);
+        employee employee2 = new employee();
+        employee2.employeeid = "E002";
+        employee2.name = "Bob";
+        employee2.role = "developer";
+        employee2.salary = 4000.0;
 
-        s1.addGrade(85);
-        s1.addGrade(90);
-        s1.addGrade(88);
+        employee employee3 = new employee();
+        employee3.employeeid = "E003";
+        employee3.name = "Charlie";
+        employee3.role = "intern";
+        employee3.salary = 2000.0;
 
-        s2.addGrade(75);
-        s2.addGrade(80);
-        s2.addGrade(70);
+        payroll payroll1 = new payroll();
 
-        manager.displayAllStudents();
+        payroll1.addemployee(employee1);
+        payroll1.addemployee(employee2);
+        payroll1.addemployee(employee3);
+
+        payroll1.calculateAllSalaries();
     }
 }
-
